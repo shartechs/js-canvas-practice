@@ -4,14 +4,20 @@ canvas.width = 450;
 canvas.height = 500;
 
 const ballPos = {
-  x: 0,
-  y: 0,
+  x: 30,
+  y: 30,
   r: 30,
-  xSpeed: 1,
-  ySpeed: 1,
+  xSpeed: 5,
+  ySpeed: 5,
 };
 
 const drawBall = () => {
+  if (ballPos.x + ballPos.r > canvas.width || ballPos.x - ballPos.r < 0) {
+    ballPos.xSpeed *= -1;
+  }
+  if (ballPos.y + ballPos.r > canvas.height || ballPos.y - ballPos.r < 0) {
+    ballPos.ySpeed *= -1;
+  }
   ballPos.x += ballPos.xSpeed;
   ballPos.y += ballPos.ySpeed;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -28,5 +34,3 @@ const update = () => {
 };
 
 update();
-
-console.log(canvas);
